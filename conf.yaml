@@ -1,0 +1,4 @@
+interval: 10  
+actions: click|typeStr  
+move-distance: 10
+typeStr: hello world\r\n
