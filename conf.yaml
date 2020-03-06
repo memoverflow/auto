@@ -1,4 +1,5 @@
-interval: 10  
-actions: click|typeStr  
+interval: 50
+actions: active|typeStr
 move-distance: 10
-typeStr: hello world\r\n
+typeStr: " "
+app: Citrix Viewer

@@ -18,6 +18,7 @@ type config struct {
 	moveDis   int
 	typeStr   string
 	durations []string
+	app       string
 }
 
 var conf = config{}
@@ -41,6 +42,8 @@ func init() {
 	conf.actions = strings.Split(viper.GetString("actions"), "|")
 	conf.moveDis = viper.GetInt("move-distance")
 	conf.typeStr = viper.GetString("typeStr")
+	conf.typeStr = viper.GetString("typeStr")
+	conf.app = viper.GetString("app")
 	//conf.durations = strings.Split(viper.GetString("durations"), "|")
 
 	fmt.Println(conf)
@@ -62,6 +65,7 @@ func main() {
 	go func() {
 		for range ticker.C {
 			for _, action := range conf.actions {
+
 				if action == "move" {
 					move()
 				}
@@ -71,6 +75,10 @@ func main() {
 				if action == "click" {
 					click()
 				}
+				if action == "active" {
+					robotgo.ActiveName(conf.app)
+				}
+
 			}
 		}
 		ch <- 1
@@ -85,7 +93,6 @@ func move() {
 func typeStr() {
 	robotgo.TypeStr(conf.typeStr)
 }
-
 func click() {
 	robotgo.MouseClick("left", true)
 }
